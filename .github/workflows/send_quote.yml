@@ -2,8 +2,8 @@ name: Send Sun Tzu Quote
 
 on:
   schedule:
-    - cron: '0 5 * * *'   # 08:00 МСК
-    - cron: '0 16 * * *'  # 19:00 МСК
+    - cron: '0 4 * * *'   # 08:00 МСК
+    - cron: '0 15 * * *'  # 19:00 МСК
   workflow_dispatch:
 
 jobs:
