@@ -1,0 +1,52 @@
+name: Send Sun Tzu Quote
+
+on:
+  schedule:
+    - cron: '0 5 * * *'   # 08:00 МСК
+    - cron: '0 16 * * *'  # 19:00 МСК
+  workflow_dispatch:
+
+jobs:
+  send:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          persist-credentials: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run bot script
+        env:
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+        run: |
+          python post_quote.py
+
+      - name: 📂 Show directory contents
+        run: |
+          echo "--- FILES IN REPO ---"
+          ls -l
+          echo "--- USED QUOTES FILE CONTENT ---"
+          cat sun_tzu_used.json || echo "No used file found"
+
+      - name: 🔍 Git status
+        run: |
+          echo "--- GIT STATUS ---"
+          git status
+          git diff
+
+      - name: Commit used quotes
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add sun_tzu_used.json
+          git commit -m "update used quotes" || echo "No changes to commit"
+          git push
