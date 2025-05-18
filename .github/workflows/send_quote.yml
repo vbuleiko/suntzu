@@ -28,7 +28,7 @@ jobs:
         env:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
         run: |
-          python post_quote.py
+          python post_suntzu.py
 
       - name: 📂 Show directory contents
         run: |
