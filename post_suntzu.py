@@ -5,7 +5,7 @@ import random
 import re
 
 TOKEN = '7756936525:AAEcuz3WziUnH3OrR0pkFpw1W2Nyg0rYFKI'
-CHANNEL_ID = '@suntzu_vibe_vibe'
+CHANNEL_ID = '@suntzu_vibe'
 QUOTES_FILE = 'sun_tzu.json'
 USED_FILE = 'sun_tzu_used.json'
 
